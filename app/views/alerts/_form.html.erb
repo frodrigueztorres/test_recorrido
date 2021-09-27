@@ -11,6 +11,31 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city_origin %>
+    <%= form.text_field :city_origin %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city_destination %>
+    <%= form.text_field :city_destination %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bus_class %>
+    <%= form.number_field :bus_class %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

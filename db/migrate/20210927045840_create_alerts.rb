@@ -4,7 +4,7 @@ class CreateAlerts < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :city_origin
       t.string :city_destination
-      t.integer :class
+      t.integer :bus_class
       t.integer :price
 
       t.timestamps
