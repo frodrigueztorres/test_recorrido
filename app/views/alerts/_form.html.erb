@@ -1,42 +1,17 @@
-<%= form_with(model: alert) do |form| %>
-  <% if alert.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(alert.errors.count, "error") %> prohibited this alert from being saved:</h2>
 
-      <ul>
-        <% alert.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for(@alert) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :city_origin %>
+    <%= f.input :city_destination %>
+    <%= f.input :bus_class %>
+    <%= f.input :price %>
   </div>
 
-  <div class="field">
-    <%= form.label :city_origin %>
-    <%= form.text_field :city_origin %>
-  </div>
-
-  <div class="field">
-    <%= form.label :city_destination %>
-    <%= form.text_field :city_destination %>
-  </div>
-
-  <div class="field">
-    <%= form.label :bus_class %>
-    <%= form.number_field :bus_class %>
-  </div>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= f.button :submit %>
   </div>
 <% end %>
