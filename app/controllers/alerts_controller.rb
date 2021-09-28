@@ -1,5 +1,6 @@
 class AlertsController < ApplicationController
   before_action :set_alert, only: %i[ show edit update destroy ]
+  before_action :set_cities, only: %i[ new edit ]
 
   # GET /alerts or /alerts.json
   def index
@@ -65,5 +66,9 @@ class AlertsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def alert_params
       params.require(:alert).permit(:name, :city_origin, :city_destination, :bus_class, :price)
+    end
+
+    def set_cities
+      @cities = Recorrido::Api.get_cities[:cities]
     end
 end

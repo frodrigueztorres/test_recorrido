@@ -7,7 +7,7 @@
     <%= f.input :name %>
     <%= f.input :city_origin %>
     <%= f.input :city_destination %>
-    <%= f.input :bus_class %>
+    <%= f.input :bus_class, collection: Alert.bus_classes.keys, include_blank: false %>
     <%= f.input :price %>
   </div>
 
