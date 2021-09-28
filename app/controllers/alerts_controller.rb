@@ -65,10 +65,16 @@ class AlertsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def alert_params
-      params.require(:alert).permit(:name, :city_origin, :city_destination, :bus_class, :price)
+      params.require(:alert).permit(
+        :name,
+        :city_origin,
+        :city_destination,
+        :bus_class,
+        :price
+      )
     end
 
     def set_cities
-      @cities = Recorrido::Api.get_cities[:cities]
+      @cities = Recorrido::Api.get_cities[:cities].map { |c| c[:name] }
     end
 end
