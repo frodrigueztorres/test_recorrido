@@ -9,6 +9,22 @@ class AlertsController < ApplicationController
 
   # GET /alerts/1 or /alerts/1.json
   def show
+    @search_results = []
+
+    7.times do |i|
+      bus_travel = Recorrido::Api.bus_travel alert: @alert, date: @alert.updated_at + (i + 1).days
+
+      if @alert.other?
+        search_travel = Recorrido::Api.search_results(search_id: bus_travel[:search_id])[:outbound][:search_results]
+                                      .min_by{|x| x[:price]}
+      else
+        search_travel = Recorrido::Api.search_results(search_id: bus_travel[:search_id])[:outbound][:search_results]
+                                      .select{ |k| k[:seat_klass_stars] == @alert.bus_class_before_type_cast }
+                                      .min_by{|x| x[:price]}
+      end
+
+      @search_results << search_travel if !search_travel.nil?
+    end
   end
 
   # GET /alerts/new
@@ -27,10 +43,8 @@ class AlertsController < ApplicationController
     respond_to do |format|
       if @alert.save
         format.html { redirect_to @alert, notice: "Alert was successfully created." }
-        format.json { render :show, status: :created, location: @alert }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @alert.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -40,10 +54,8 @@ class AlertsController < ApplicationController
     respond_to do |format|
       if @alert.update(alert_params)
         format.html { redirect_to @alert, notice: "Alert was successfully updated." }
-        format.json { render :show, status: :ok, location: @alert }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @alert.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -53,7 +65,6 @@ class AlertsController < ApplicationController
     @alert.destroy
     respond_to do |format|
       format.html { redirect_to alerts_url, notice: "Alert was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
