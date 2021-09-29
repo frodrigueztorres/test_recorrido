@@ -39,7 +39,7 @@
 
   <tbody>
     <% @search_results.each do |search_result| %>
-      <tr>
+      <tr data-link="<%= "https://demo.recorrido.cl/es/bus/#{@alert.city_origin_url_name}/#{@alert.city_destination_url_name}/#{l(search_result[:departure_time].to_date)}" %>">
         <td><%= l(search_result[:departure_time].to_date) %></td>
         <td><%= l(search_result[:departure_time].to_time, format: :only_time) %></td>
         <td><%= search_result[:seat_klass] %></td>
@@ -53,3 +53,9 @@
 
 <%= link_to 'Edit', edit_alert_path(@alert) %> |
 <%= link_to 'Back', alerts_path %>
+
+<script>
+  $("tr[data-link]").click(function() {
+    window.location = $(this).data("link")
+  })
+</script>
