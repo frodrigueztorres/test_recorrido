@@ -67,14 +67,18 @@ class AlertsController < ApplicationController
     def alert_params
       params.require(:alert).permit(
         :name,
-        :city_origin,
-        :city_destination,
+        :city_origin_id,
+        :city_origin_name,
+        :city_origin_url_name,
+        :city_destination_id,
+        :city_destination_name,
+        :city_destination_url_name,
         :bus_class,
         :price
       )
     end
 
     def set_cities
-      @cities = Recorrido::Api.get_cities[:cities].map { |c| c[:name] }
+      @cities = Recorrido::Api.get_cities[:cities].map { |c| [c[:name], c[:id], url_name: c[:url_name]] }
     end
 end
