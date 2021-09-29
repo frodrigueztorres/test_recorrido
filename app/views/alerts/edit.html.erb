@@ -4,3 +4,15 @@
 
 <%= link_to 'Show', @alert %> |
 <%= link_to 'Back', alerts_path %>
+
+<script>
+  $('#alert_city_origin_id').on('change', function(e) {
+      $('#alert_city_origin_name').val($('#alert_city_origin_id').find(":selected").text())
+      $('#alert_city_origin_url_name').val($('#alert_city_origin_id').find(":selected").attr('url_name'))
+  });
+
+  $('#alert_city_destination_id').on('change', function(e) {
+      $('#alert_city_destination_name').val($('#alert_city_destination_id').find(":selected").text())
+      $('#alert_city_destination_url_name').val($('#alert_city_origin_id').find(":selected").attr('url_name'))
+  });
+</script>

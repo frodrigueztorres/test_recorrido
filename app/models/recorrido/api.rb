@@ -46,5 +46,20 @@ module Recorrido
       response = http.request(request)
       JSON.parse(response.read_body).with_indifferent_access
     end
+
+    def self.search_results search_id:
+      url = URI("#{ENDPOINT}/es/bus_travels/#{search_id}/search_results.json")
+
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      request = Net::HTTP::Get.new(URI(url.to_s))
+      request["Accept"] = "application/json"
+      request["Content-Type"] = "application/json"
+      request.basic_auth("recorrido", "recorrido")
+
+      response = http.request(request)
+      JSON.parse(response.read_body).with_indifferent_access
+    end
   end
 end

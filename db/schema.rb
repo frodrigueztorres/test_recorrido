@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 2021_09_27_050141) do
 
   create_table "alerts", force: :cascade do |t|
     t.string "name"
-    t.string "city_origin_id"
+    t.integer "city_origin_id"
     t.string "city_origin_name"
     t.string "city_origin_url_name"
-    t.string "city_destination_id"
+    t.integer "city_destination_id"
     t.string "city_destination_name"
     t.string "city_destination_url_name"
     t.integer "bus_class"
