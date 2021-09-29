@@ -37,8 +37,8 @@ module Recorrido
 
       request.body = {
         bus_travel: {
-          departure_city_id: alert.fetch_id_origin,
-          destination_city_id: alert.fetch_id_destination,
+          departure_city_id: alert.city_origin_id,
+          destination_city_id: alert.city_destination_id,
           departure_date: I18n.l(alert.updated_at.to_date)
         }
       }.to_json
