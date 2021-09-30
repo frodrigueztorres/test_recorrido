@@ -25,6 +25,11 @@ class AlertsController < ApplicationController
 
       @search_results << search_travel if !search_travel.nil?
     end
+
+    @graph = {}
+    @search_results.each do |search_result|
+      @graph[l(search_result[:departure_time].to_date)] = search_result[:price].to_i
+    end
   end
 
   # GET /alerts/new
