@@ -1,35 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Alerts</h1>
+<h1>Alertas</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>City origin</th>
-      <th>City destination</th>
-      <th>Bus class</th>
-      <th>Price</th>
-      <th colspan="3"></th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Origen</th>
+      <th scope="col">Destino</th>
+      <th scope="col">Clase</th>
+      <th scope="col">Precio</th>
+      <th scope="col" colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @alerts.each do |alert| %>
       <tr>
         <td><%= alert.name %></td>
         <td><%= alert.city_origin_name %></td>
         <td><%= alert.city_destination_name %></td>
-        <td><%= alert.bus_class %></td>
-        <td><%= alert.price %></td>
-        <td><%= link_to 'Show', alert %></td>
-        <td><%= link_to 'Edit', edit_alert_path(alert) %></td>
-        <td><%= link_to 'Destroy', alert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= alert.bus_class_i18n %></td>
+        <td><%= number_to_currency alert.price %></td>
+        <td><%= link_to 'Ver', alert %></td>
+        <td><%= link_to 'Editar', edit_alert_path(alert) %></td>
+        <td><%= link_to 'Eliminar', alert, method: :delete, data: { confirm: 'Está seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
-<%= link_to 'New Alert', new_alert_path %>
+<%= link_to 'Nueva Alerta', new_alert_path %>

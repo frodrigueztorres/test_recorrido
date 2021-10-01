@@ -218,3 +218,11 @@ es:
       short: "%d de %b %H:%M"
       only_time: "%H:%M"
     pm: pm
+  enums:
+    alert:
+      bus_class:
+        premium: Premium
+        bed_room: Salón Cama
+        semi_room: Semi Cama
+        pullman: Pullman
+        other: Cualquiera

@@ -82,6 +82,8 @@ GEM
     crass (1.0.6)
     diff-lcs (1.4.4)
     docile (1.4.0)
+    enum_help (0.0.17)
+      activesupport (>= 3.0.0)
     erubi (1.10.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -255,6 +257,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   chartkick
+  enum_help
   factory_bot_rails
   faker
   jbuilder (~> 2.7)

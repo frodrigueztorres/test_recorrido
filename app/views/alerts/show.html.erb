@@ -1,60 +1,63 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @alert.name %>
-</p>
-
-<p>
-  <strong>City origin:</strong>
-  <%= @alert.city_origin_name %>
-</p>
-
-<p>
-  <strong>City destination:</strong>
-  <%= @alert.city_destination_name %>
-</p>
-
-<p>
-  <strong>Bus class:</strong>
-  <%= @alert.bus_class %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @alert.price %>
-</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Schedule</th>
-      <th>Class</th>
-      <th>Minimum price</th>
-      <th>Enterprise</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @search_results.each do |search_result| %>
-      <tr data-link="<%= "https://demo.recorrido.cl/es/bus/#{@alert.city_origin_url_name}/#{@alert.city_destination_url_name}/#{l(search_result[:departure_time].to_date)}" %>">
-        <td><%= l(search_result[:departure_time].to_date) %></td>
-        <td><%= l(search_result[:departure_time].to_time, format: :only_time) %></td>
-        <td><%= search_result[:seat_klass] %></td>
-        <td><%= search_result[:price] %></td>
-        <td><%= search_result[:bus_operator_name] %></td>
+<div class="row">
+  <div class="col-4">
+    <h2><%= @alert.name %></h2>
+    <p>
+      <strong>Origen:</strong>
+      <%= @alert.city_origin_name %>
+    </p>
+    <p>
+      <strong>Destino:</strong>
+      <%= @alert.city_destination_name %>
+    </p>
+    <p>
+      <strong>Clase:</strong>
+      <%= @alert.bus_class_i18n %>
+    </p>
+    <p>
+      <strong>Precio:</strong>
+      <%= number_to_currency @alert.price %>
+    </p>
+  </div>
+  <div class="col-8">
+    <%= line_chart @graph, thousands: '.', height: '400px',
+    discrete: true, xtitle: "Fecha", ytitle: "Precio" %>
+  </div>
+</div>
+</br>
+<p>Puedes hacer click en la fila correspondiente</p>
+</br>
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Fecha</th>
+        <th scope="col">Horario</th>
+        <th scope="col">Clase</th>
+        <th scope="col">Precio mínimo</th>
+        <th scope="col">Empresa de bus</th>
+        <th scope="col" colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @search_results.each do |search_result| %>
+        <tr data-link="<%= "https://demo.recorrido.cl/es/bus/#{@alert.city_origin_url_name}/#{@alert.city_destination_url_name}/#{l(search_result[:departure_time].to_date)}" %>">
+          <td><%= l(search_result[:departure_time].to_date) %></td>
+          <td><%= l(search_result[:departure_time].to_time, format: :only_time) %></td>
+          <td><%= search_result[:seat_klass].capitalize %></td>
+          <td><%= number_to_currency search_result[:price] %></td>
+          <td><%= search_result[:bus_operator_name] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<%= line_chart @graph, thousands: '.', height: '400px', discrete: true, xtitle: "Fecha", ytitle: "Precio" %>
+<%= link_to 'Editar', edit_alert_path(@alert) %> |
+<%= link_to 'Atrás', alerts_path %>
 
 
-<%= link_to 'Edit', edit_alert_path(@alert) %> |
-<%= link_to 'Back', alerts_path %>
 
 <script>
   $("tr[data-link]").click(function() {
