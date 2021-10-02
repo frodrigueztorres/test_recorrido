@@ -35,7 +35,7 @@ Finalmente, al observar cada elemento se puede consultar un listado sobre los bu
 
 Finalmente, dentro de la tabla, se puede hacer click a cada una de las columnas y llevarán como link a la página correspondiente para la compra de los pasajes (Si es primera vez que se ingresa, se debe hacer con nombre de usuario y contraseña, el cual será recorrido)
 
-Imagen de ejemplo
-![image](https://user-images.githubusercontent.com/34196966/135700282-dfc6f50b-5345-4009-af36-abd94638dc06.png)
-
 Finalmente, dentro de la tabla, se puede hacer click a cada una de las columnas y llevarán como link a la página correspondiente para la compra de los pasajes (Si es primera vez que se ingresa, se debe hacer con nombre de usuario y contraseña, el cual será recorrido)
+
+Data usada de ejemplo para verificar funcionalidad
+![image](https://user-images.githubusercontent.com/34196966/135700282-dfc6f50b-5345-4009-af36-abd94638dc06.png)
