@@ -1,6 +1,15 @@
 ---
 es:
   activerecord:
+    models:
+      alert: Alerta
+    attributes:
+      alert:
+        name: Nombre
+        city_origin_id: Ciudad de origen
+        city_destination_id: Ciudad de destino
+        bus_class: Clase
+        price: Precio
     errors:
       messages:
         record_invalid: 'La validación falló: %{errors}'
@@ -218,6 +227,12 @@ es:
       short: "%d de %b %H:%M"
       only_time: "%H:%M"
     pm: pm
+
+    titles:
+      create: 'Crear %{model}'
+      update: 'Editar %{model}'
+      destroy: 'Eliminar %{model}'
+
   enums:
     alert:
       bus_class:
