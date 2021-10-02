@@ -39,3 +39,9 @@ Finalmente, dentro de la tabla, se puede hacer click a cada una de las columnas 
 
 Data usada de ejemplo para verificar funcionalidad
 ![image](https://user-images.githubusercontent.com/34196966/135700282-dfc6f50b-5345-4009-af36-abd94638dc06.png)
+
+## Consideraciones
+
+* No se pudo agregar Vue.js a la solución
+* No se pudo realizar un fetch de la API como job en background cada cinco segundos (se intentó agregar sidekiq más un cron)
+* El fetch de la API se realiza cuando se ingresa al show de la plataforma, lo que empeora la performance de la aplicación. 
