@@ -60,7 +60,8 @@
 
 
 <script>
-  $("tr[data-link]").click(function() {
+  $("tr[data-link]").on('click', function() {
     window.location = $(this).data("link")
+    $('selector').css('cursor', 'pointer');
   })
 </script>
