@@ -15,7 +15,7 @@
       <strong>Clase:</strong>
       <%= @alert.bus_class_i18n %>
     </p>
-    <p>
+    <p id="price">
       <strong>Precio:</strong>
       <%= number_to_currency @alert.price %>
     </p>
@@ -29,7 +29,7 @@
 <p>Puedes hacer click en la fila correspondiente</p>
 </br>
 <div class="row">
-  <table class="table">
+  <table class="table" id="busResults">
     <thead>
       <tr>
         <th scope="col">Fecha</th>
@@ -60,6 +60,16 @@
 
 
 <script>
+  $("#busResults tbody").each(function( index, element ) {
+
+    var value = $('#price').text().replace(/[^0-9]/gi, '');
+    var table_value = $(this).find('td').eq(3).html().replace(/[^0-9]/gi, '');
+
+    if(parseInt(table_value) <= parseInt(value)) {
+      $(this).find('td').addClass("table-success");
+    };
+  });
+
   $("tr[data-link]").on('click', function() {
     window.location = $(this).data("link")
   })
